@@ -88,6 +88,7 @@ const CheckOutPage = ({ children, trainDetails }) => {
       // phone: values.phone,
       email: grouped[0].email,
       clients: grouped,
+      seats: JSON.parse(localStorage.getItem('selectedSeats')),
     }
     try {
       setisLoading(true)
@@ -99,7 +100,6 @@ const CheckOutPage = ({ children, trainDetails }) => {
       console.log(err)
     }
   }
-  console.log(carDetails)
 
   async function handleBooking() {
     fetch(
@@ -132,6 +132,8 @@ const CheckOutPage = ({ children, trainDetails }) => {
         setticketDetails(data)
         setprintTicket(true)
         setTicketconfirmation(false)
+        // localStorage.clear()
+        // navigate('/')
       })
       .catch((error) => {
         console.error('Error:', error)
@@ -491,7 +493,7 @@ const CheckOutPage = ({ children, trainDetails }) => {
                       Amount---
                       {
                         ticketDetails?.ConfirmResults[0].OrderItemCustomers[i]
-                          .Amount
+                          ?.Amount
                       }
                     </li>
                     <li>
