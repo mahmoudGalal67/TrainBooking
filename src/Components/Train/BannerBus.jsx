@@ -207,7 +207,7 @@ const BannerTrain = () => {
                     size={20}
                   />
                   <span className="text-black text-sm">
-                    {guests + children} {t('Guest')}
+                    {guests + children} {t('Passengers')}
                     {guests + children > 1 ? 's' : ''}
                   </span>
                   {showSelector && (

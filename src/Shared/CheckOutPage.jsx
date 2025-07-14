@@ -25,6 +25,7 @@ import dayjs from 'dayjs'
 
 const CheckOutPage = ({ children, trainDetails }) => {
   const [isLoading, setisLoading] = useState(false)
+  const [isloadingconfirmaion, setisloadingconfirmaion] = useState(false)
   const [Ticketconfirmation, setTicketconfirmation] = useState(false)
   const [printTicket, setprintTicket] = useState(false)
   const [Ticket, setTicket] = useState(null)
@@ -93,8 +94,11 @@ const CheckOutPage = ({ children, trainDetails }) => {
     try {
       setisLoading(true)
       const result = await ReservationCreate(bookingdata)
-      setTicket(result)
+      if (result.error) {
+        message.error(result?.error?.data?.details?.Message)
+      }
       setisLoading(false)
+      setTicket(result)
       setTicketconfirmation(true)
     } catch (err) {
       console.log(err)
@@ -102,6 +106,7 @@ const CheckOutPage = ({ children, trainDetails }) => {
   }
 
   async function handleBooking() {
+    setisloadingconfirmaion(true)
     fetch(
       'https://matroshka-travel.com/proxy-onelya/Order/V1/Reservation/Confirm',
       {
@@ -132,11 +137,12 @@ const CheckOutPage = ({ children, trainDetails }) => {
         setticketDetails(data)
         setprintTicket(true)
         setTicketconfirmation(false)
+        setisloadingconfirmaion(false)
         // localStorage.clear()
         // navigate('/')
       })
       .catch((error) => {
-        console.error('Error:', error)
+        message.error(error?.data?.details?.Message)
       })
   }
 
@@ -162,7 +168,7 @@ const CheckOutPage = ({ children, trainDetails }) => {
                         variant={false}
                       >
                         <Form.Item
-                          label="Guest Name"
+                          label="Passenger Name"
                           name={`guestName ${i + 1}`}
                           rules={[
                             {
@@ -278,7 +284,7 @@ const CheckOutPage = ({ children, trainDetails }) => {
                         variant={false}
                       >
                         <Form.Item
-                          label="Guest Name"
+                          label="Passenger Name"
                           name={`childe name ${i + 1}`}
                           rules={[
                             {
@@ -413,14 +419,14 @@ const CheckOutPage = ({ children, trainDetails }) => {
               className="ml-2 px-5 py-2 bg-primary text-white rounded-lg hover:bg-second transition-all duration-200 text-sm"
               onClick={handleBooking}
             >
-              Confirm Booking
+              {!isloadingconfirmaion ? 'Confirm Booking' : 'loading...'}
             </button>,
           ]}
         >
           <div className="space-y-4 text-sm">
             <div>
               <h3 className="font-semibold text-gray-800 mb-1">
-                Ticket details :<p>ticket number - {Ticket?.data?.OrderId}</p>
+                <p>ticket number - {Ticket?.data?.OrderId}</p>
                 <p>
                   Available untill -
                   {dayjs(Ticket?.data?.ConfirmTill).format('hh:mm A')}
@@ -458,14 +464,13 @@ const CheckOutPage = ({ children, trainDetails }) => {
             <div>
               <h3 className="font-semibold text-gray-800 mb-1">
                 <p>ticket number - {ticketDetails?.OrderId}</p>
-                <h3>Passengers :</h3>
+                <h3>Passengers ({ticketDetails?.Customers.length})</h3>
                 <br />
-
                 {ticketDetails?.Customers.map((client, i) => (
                   <ul key={i}>
                     <li>
                       {' '}
-                      Ticket Customer Id ---
+                      Ticket Passenger Id ---
                       {client.OrderCustomerId}
                     </li>
                     <li>
@@ -475,7 +480,7 @@ const CheckOutPage = ({ children, trainDetails }) => {
                     </li>
                     <li>
                       {' '}
-                      Sex---
+                      Gender---
                       {client.Sex}
                     </li>
                     <li>
