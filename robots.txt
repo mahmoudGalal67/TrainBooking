@@ -1,0 +1,14 @@
+# Allow all web crawlers full access
+User-agent: *
+Disallow:
+
+# Block access to certain directories (e.g., private folders)
+Disallow: /private/
+
+# Block crawlers from accessing the Vite development resources
+Disallow: /@vite/
+Disallow: /src/
+
+# Block sensitive files
+Disallow: /robots.txt
+Disallow: /favicon.ico

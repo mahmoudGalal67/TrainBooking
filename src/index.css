@@ -1,0 +1,196 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+  background-color: #f0f0f0;
+  overflow-x: hidden;
+}
+/* 
+*{
+  overflow-x: hidden;
+}
+h1,h2,h3,h4,h5,h6,p,div{
+  overflow: hidden;
+} */
+.link-underline {
+  text-decoration: underline;
+  text-decoration-color: var(--underline-color);
+}
+
+.link-hover-underline:hover {
+  text-decoration: underline;
+  text-decoration-color: var(--underline-color);
+  -moz-text-decoration-color: var(--underline-color);
+}
+
+:root {
+  --underline-color: #f1510c;
+}
+
+.ant-tabs-tab-active .ant-tabs-tab-btn {
+  color: #f1510c !important;
+}
+:where(.css-dev-only-do-not-override-14qglws).ant-tabs .ant-tabs-ink-bar,
+:where(.css-dev-only-do-not-override-14qglws).ant-btn-primary.ant-btn-solid {
+  background-color: #f1510c !important;
+}
+
+.full-width-modal .ant-modal {
+  width: 100%;
+  height: 100vh;
+  max-width: none;
+}
+html {
+  scroll-behavior: smooth;
+}
+* {
+  scrollbar-width: thin;
+  scrollbar-color: #f1510c #f1f1f1;
+  /* overflow-x: hidden; */
+}
+.ant-list-item {
+  justify-content: start !important;
+}
+
+.display-left-chat {
+  display: none;
+}
+
+@media (max-width: 613px) {
+  .ant-layout-sider {
+    max-width: 100% !important;
+    min-width: 100% !important;
+    width: auto !important;
+    z-index: 4;
+  }
+  .ant-layout {
+    position: absolute !important;
+    left: 0 !important;
+    width: 100% !important;
+  }
+  .ant-layout .active-ant-layout {
+    position: absolute !important;
+    left: 0 !important;
+    z-index: 44;
+    height: 100%;
+    width: 100%;
+  }
+  :where(.css-dev-only-do-not-override-14qglws).ant-layout.ant-layout-has-sider
+    > .ant-layout,
+  :where(.css-dev-only-do-not-override-14qglws).ant-layout.ant-layout-has-sider
+    > .ant-layout-content {
+    width: 100% !important;
+  }
+  .display-left-chat {
+    display: block;
+  }
+}
+
+.pagination {
+  display: flex;
+  justify-content: center;
+  list-style: none;
+  padding: 0;
+}
+
+.pagination li {
+  margin: 0 5px;
+  cursor: pointer;
+}
+
+.pagination a {
+  font-weight: bold;
+  color: #222222;
+  background-color: white;
+  padding: 5px 10px;
+  border-radius: 5px;
+}
+
+.pagination .active a {
+  font-weight: bold;
+  color: white;
+  background-color: var(--underline-color);
+  padding: 5px 10px;
+  border-radius: 5px;
+}
+
+.phone-input {
+  width: 100%;
+  .PhoneInputInput {
+    height: 30px;
+    padding: 8px 8px;
+    border: 1px solid #d9d9d9;
+    border-radius: 4px;
+    outline: none;
+    transition: all 0.3s;
+  }
+  .PhoneInputInput:focus {
+    border-color: #1890ff;
+    box-shadow: 0 0 0 2px rgba(24, 144, 255, 0.2);
+  }
+}
+
+:where(.css-dev-only-do-not-override-14qglws).ant-select-outlined:not(
+    .ant-select-customize-input
+  )
+  .ant-select-selector {
+  border: none !important;
+  background: #ffffff;
+}
+.ant-select-focused:where(
+    .css-dev-only-do-not-override-14qglws
+  ).ant-select-outlined:not(.ant-select-disabled):not(
+    .ant-select-customize-input
+  ):not(.ant-pagination-size-changer)
+  .ant-select-selector {
+  border-color: #fff !important;
+  box-shadow: 0 0 0 2px rgba(5, 145, 255, 0.1);
+  outline: 0;
+}
+:where(.css-dev-only-do-not-override-14qglws).ant-select-outlined:not(
+    .ant-select-disabled
+  ):not(.ant-select-customize-input):not(.ant-pagination-size-changer):hover
+  .ant-select-selector {
+  border-color: #fff !important;
+}
+.ant-select-focused:where(
+    .css-dev-only-do-not-override-14qglws
+  ).ant-select-outlined:not(.ant-select-disabled):not(
+    .ant-select-customize-input
+  ):not(.ant-pagination-size-changer)
+  .ant-select-selector {
+  border-color: #fff !important;
+}
+
+
+:where(.css-dev-only-do-not-override-14qglws).ant-radio-wrapper .ant-radio-checked .ant-radio-inner {
+  border-color: var(--underline-color) !important;
+  background-color: var(--underline-color) !important;
+}
+
+:where(.css-dev-only-do-not-override-14qglws).ant-select-outlined:not( .ant-select-customize-input ) .ant-select-selector {
+  border: none !important;
+  background: #edf2f7 !important;
+}
+
+.ant-radio-checked .ant-radio-inner{
+  background-color: #D84403 !important;
+  border-color: #D84403 !important;
+}
+
+
+@media (min-width:780px) {
+  .ant-select-dropdown{
+    width: 300px !important;
+    max-width: 100% !important;
+  }
+}
+
+.ant-image-mask {
+  border-radius: 0.5rem !important; /* مثلاً rounded-lg */
+  overflow: hidden;
+}
+.react-datepicker-wrapper{
+  width: 100% !important;
+}

@@ -1,0 +1,61 @@
+{
+  "booking": {
+    "propertyId": "7291",
+    "roomStays": [
+      {
+        "stayDates": {
+          "arrivalDateTime": "2025-04-01T13:00",
+          "departureDateTime": "2025-04-05T10:00"
+        },
+        "ratePlan": {
+          "id": "350537"
+        },
+        "roomType": {
+          "id": "340935",
+          "placements": [
+            {
+              "code": "AdultBed-2"
+            }
+          ]
+        },
+        "guests": [
+          {
+            "firstName": "John",
+            "lastName": "Doe"
+          }
+        ],
+        "guestCount": {
+          "adultCount": 1,
+          "childAges": [5]
+        },
+        "checksum": "eyJDaGVja3N1bVdpdGhPdXRFeHRyYXMiOnsiVG90YWxBbW91bnRBZnRlclRheCI6IjExMDAuMDAiLCJDdXJyZW5jeUNvZGUiOiJSVUIiLCJTdGFydFBlbmFsdHlBbW91bnQiOiIxMDAwLjAwIn0sIkNoZWNrc3VtV2l0aEV4dHJhcyI6eyJUb3RhbEFtb3VudEFmdGVyVGF4IjoiMTEwMC4wMCIsIkN1cnJlbmN5Q29kZSI6IlJVQiIsIlN0YXJ0UGVuYWx0eUFtb3VudCI6IjEwMDAuMDAifX0==",
+        "services": null,
+        "extraStay": {
+          "earlyArrival": {
+            "overriddenDateTime": "2025-04-01T13:00"
+          },
+          "lateDeparture": {
+            "overriddenDateTime": "2025-04-05T10:00"
+          }
+        }
+      }
+    ],
+    "services": null,
+    "customer": {
+      "firstName": "John",
+      "lastName": "Doe",
+      "contacts": {
+        "phones": [
+          {
+            "phoneNumber": "+442012345678"
+          }
+        ],
+        "emails": [
+          {
+            "emailAddress": "email@example.com"
+          }
+        ]
+      }
+    }
+  }
+}

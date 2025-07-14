@@ -1,0 +1,27 @@
+{
+  "rewrites": [
+    {
+      "source": "/apiProperties/:path*",
+      "destination": "https://partner.qatl.ru/api/:path*"
+    },
+    {
+      "source": "/api/:path*",
+      "destination": "https://api.sputnik8.com/v1/:path*"
+    },
+    {
+      "source": "/(.*)",
+      "destination": "/index.html"
+    }
+  ],
+  "headers": [
+    {
+      "source": "/apiProperties/:path*",
+      "headers": [
+        {
+          "key": "X-API-KEY",
+          "value": "2dcdc433-4d54-4079-8ee0-293e36e0446c"
+        }
+      ]
+    }
+  ]
+}
