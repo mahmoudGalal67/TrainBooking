@@ -6,7 +6,7 @@ const styles = StyleSheet.create({
   page: { padding: 30 },
   section: { marginBottom: 10 },
   title: { fontSize: 18, marginBottom: 10 },
-  text: { fontSize: 12 },
+  text: { fontSize: 12, marginBottom: 3 },
 })
 
 const MyDocument = ({ ticketDetails, carDetails, trainDetails, seats }) => (
@@ -29,7 +29,7 @@ const MyDocument = ({ ticketDetails, carDetails, trainDetails, seats }) => (
         <Text style={styles.text}>
           Passengers ({ticketDetails?.Customers.length})
         </Text>
-
+        <br />
         {ticketDetails?.Customers.map((client, i) => (
           <Fragment key={i}>
             <Text style={styles.text}>
@@ -67,11 +67,11 @@ const MyDocument = ({ ticketDetails, carDetails, trainDetails, seats }) => (
             <Text style={styles.text}>
               {' '}
               Fare---
-              {ticketDetails?.ConfirmResults[0].OrderItemCustomers[i].Fare}
+              {ticketDetails?.ConfirmResults[0].OrderItemCustomers[i]?.Fare}
             </Text>
             <Text style={styles.text}>
               Tax---
-              {ticketDetails?.ConfirmResults[0].OrderItemCustomers[i].Tax}
+              {ticketDetails?.ConfirmResults[0].OrderItemCustomers[i]?.Tax}
             </Text>
             <Text style={styles.text}>
               Ticket Passenger Id ---
@@ -83,14 +83,15 @@ const MyDocument = ({ ticketDetails, carDetails, trainDetails, seats }) => (
             </Text>
           </Fragment>
         ))}
+        <br />
         <Text style={styles.text}>
-          Total Amount-- {ticketDetails?.ConfirmResults[0].Amount}
+          Total Amount-- {ticketDetails?.ConfirmResults[0]?.Amount}
         </Text>
         <Text style={styles.text}>
-          Total Fare-- {ticketDetails?.ConfirmResults[0].Fare}
+          Total Fare-- {ticketDetails?.ConfirmResults[0]?.Fare}
         </Text>
         <Text style={styles.text}>
-          Total Tax-- {ticketDetails?.ConfirmResults[0].Tax}
+          Total Tax-- {ticketDetails?.ConfirmResults[0]?.Tax}
         </Text>
       </View>
     </Page>

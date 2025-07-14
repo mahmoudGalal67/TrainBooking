@@ -104,6 +104,7 @@ const CheckOutPage = ({ children, trainDetails }) => {
         setisLoading(false)
         return
       }
+      setisLoading(false)
       setTicket(result)
       setTicketconfirmation(true)
     } catch (err) {
@@ -141,6 +142,7 @@ const CheckOutPage = ({ children, trainDetails }) => {
       .then((data) => {
         if (data.error) {
           message.error(data?.error?.data?.details?.Message)
+          setTicketconfirmation(false)
         }
         message.success('Confirmed')
         setticketDetails(data)
@@ -463,7 +465,10 @@ const CheckOutPage = ({ children, trainDetails }) => {
             <button
               key={'booking'}
               className="ml-2 px-5 py-2 bg-primary text-white rounded-lg hover:bg-second transition-all duration-200 text-sm"
-              onClick={() => {}}
+              onClick={() => {
+                localStorage.clear()
+                navigate('/')
+              }}
             >
               <PDFDownloadLink
                 document={
@@ -528,7 +533,7 @@ const CheckOutPage = ({ children, trainDetails }) => {
                       Fare---
                       {
                         ticketDetails?.ConfirmResults[0].OrderItemCustomers[i]
-                          .Fare
+                          ?.Fare
                       }
                     </li>
                     <li>
@@ -536,7 +541,7 @@ const CheckOutPage = ({ children, trainDetails }) => {
                       Tax---
                       {
                         ticketDetails?.ConfirmResults[0].OrderItemCustomers[i]
-                          .Tax
+                          ?.Tax
                       }
                     </li>
                     <hr />
