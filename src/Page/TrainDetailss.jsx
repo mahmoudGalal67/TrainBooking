@@ -13,6 +13,8 @@ const TrainDetails = () => {
   const { setcarDetails, carDetails } = useRailway()
   const [loading, setloading] = useState(false)
 
+  const navigate = useNavigate()
+
   const [selectedSeatType, setSelectedSeatType] = useState(null)
   const [selectedSeatIndex, setSelectedSeatIndex] = useState([])
   const [trainDetails, settrainDetails] = useState(null)
@@ -54,6 +56,7 @@ const TrainDetails = () => {
       setloading(true)
       try {
         const res = await carPricing(data)
+
         setcarGroups(groupByCarType(res?.data?.Cars))
         setloading(false)
         settrainDetails(res?.data)
@@ -64,8 +67,6 @@ const TrainDetails = () => {
     }
     getData()
   }, [])
-
-  const navigate = useNavigate()
 
   const handleNavigate = () => {
     if (selectedSeatIndex.length < totalGuest) {

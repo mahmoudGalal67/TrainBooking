@@ -23,7 +23,10 @@ const YourTicket = () => {
     DestinationCode: searchData.get('destinationCode'),
     Provider: searchData.get('provider'),
   }
-
+  if (carDetails == null) {
+    navigate('/train')
+    return
+  }
   const totalPrice =
     ((carDetails[0] && carDetails[0]?.ServiceCost * passengers.adults) || 0) +
       carDetails[0]?.ServiceCost * passengers.children || 0

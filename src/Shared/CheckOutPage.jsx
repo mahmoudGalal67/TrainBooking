@@ -22,6 +22,8 @@ import { FaSpinner } from 'react-icons/fa'
 import { useReservationCreateMutation } from '../app/Feature/API/Train'
 import { useRailway } from '../context/railwayContext'
 import dayjs from 'dayjs'
+import MyDocument from './PDFDocument'
+import { PDFDownloadLink } from '@react-pdf/renderer'
 
 const CheckOutPage = ({ children, trainDetails }) => {
   const [isLoading, setisLoading] = useState(false)
@@ -40,11 +42,14 @@ const CheckOutPage = ({ children, trainDetails }) => {
   //   }
   // }, [])
   const { carDetails } = useRailway()
+  const grouped = []
 
   const [ReservationCreate] = useReservationCreateMutation()
-
+  if (carDetails == null) {
+    navigate('/train')
+    return
+  }
   const onFinish = async (values) => {
-    const grouped = []
     let seatIndex = 0
 
     // Process Adults (guests)
@@ -96,8 +101,9 @@ const CheckOutPage = ({ children, trainDetails }) => {
       const result = await ReservationCreate(bookingdata)
       if (result.error) {
         message.error(result?.error?.data?.details?.Message)
+        setisLoading(false)
+        return
       }
-      setisLoading(false)
       setTicket(result)
       setTicketconfirmation(true)
     } catch (err) {
@@ -133,6 +139,9 @@ const CheckOutPage = ({ children, trainDetails }) => {
     )
       .then((res) => res.json())
       .then((data) => {
+        if (data.error) {
+          message.error(data?.error?.data?.details?.Message)
+        }
         message.success('Confirmed')
         setticketDetails(data)
         setprintTicket(true)
@@ -456,7 +465,19 @@ const CheckOutPage = ({ children, trainDetails }) => {
               className="ml-2 px-5 py-2 bg-primary text-white rounded-lg hover:bg-second transition-all duration-200 text-sm"
               onClick={() => {}}
             >
-              Print
+              <PDFDownloadLink
+                document={
+                  <MyDocument
+                    ticketDetails={ticketDetails}
+                    carDetails={carDetails}
+                    trainDetails={trainDetails}
+                    seats={seats}
+                  />
+                }
+                fileName="data.pdf"
+              >
+                {({ loading }) => (loading ? 'Loading...' : 'Download PDF')}
+              </PDFDownloadLink>
             </button>,
           ]}
         >
@@ -473,15 +494,16 @@ const CheckOutPage = ({ children, trainDetails }) => {
                       Ticket Passenger Id ---
                       {client.OrderCustomerId}
                     </li>
-                    <li>
-                      {' '}
-                      Name ---
-                      {client.FirstName}
-                    </li>
+
                     <li>
                       {' '}
                       Gender---
                       {client.Sex}
+                    </li>
+                    <li>
+                      {' '}
+                      Seat No---
+                      {seats[i]}
                     </li>
                     <li>
                       {' '}
