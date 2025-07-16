@@ -107,7 +107,7 @@ export const TrainApi = createApi({
             CarType: bookingdata.CarType,
             ServiceClass: bookingdata.ServiceClass,
             Provider: bookingdata.Provider,
-            CabinGenderKind: 'Male',
+            CabinGenderKind: 'NoValue',
             CarStorey: 'NoValue',
             CabinPlaceDemands: 'NoValue',
             SetElectronicRegistration: false,
